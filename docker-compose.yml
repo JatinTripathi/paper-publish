@@ -1,0 +1,40 @@
+#Search Microservice
+search:
+  image:elasticsearch
+  ports:
+    -9200:9200
+    -9300:9300
+
+#Editor Service Database
+mongo-edit:
+  image:mongo
+  links:
+    -search
+  volumes:
+    -data
+
+#Editor Microservice
+editor-service:
+  build:/editor-services
+  links:
+    -mongo-edit:db
+  volumes:
+    -
+
+#Api-Gateway Database
+mongo-api:
+  image:mongo
+  volumes:
+    -data
+
+#Authentication, Authorization and Reverse Proxy
+api-gateway:
+  build:/api-gateway
+  ports:
+    -8080:8080
+  volumes:
+    -log
+  links:
+    -editor-gateway:editor
+    -mongo-api:db
+    -search
