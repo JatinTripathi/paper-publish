@@ -43,6 +43,6 @@ api-gateway:
   volumes:
     -log
   links:
-    -editor-gateway:editor
     -mongo-api:db
-    -search
+    -editor-gateway:editor
+    -serach-service:search
