@@ -5,6 +5,14 @@ search:
     -9200:9200
     -9300:9300
 
+#Search Microservice
+search-service:
+  build:../search-service
+  links:
+    -search
+  volumes:
+    -log
+
 #Editor Service Database
 mongo-edit:
   image:mongo
@@ -15,11 +23,11 @@ mongo-edit:
 
 #Editor Microservice
 editor-service:
-  build:/editor-services
+  build:../editor-services
   links:
     -mongo-edit:db
   volumes:
-    -
+    -log
 
 #Api-Gateway Database
 mongo-api:
@@ -29,7 +37,7 @@ mongo-api:
 
 #Authentication, Authorization and Reverse Proxy
 api-gateway:
-  build:/api-gateway
+  build:../api-gateway
   ports:
     -8080:8080
   volumes:
