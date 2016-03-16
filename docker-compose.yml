@@ -1,12 +1,12 @@
 #Search Microservice
-search:
+mongo-search:
   image:elasticsearch
 
 #Search Microservice
 search-service:
   build:./search-service
   links:
-    -search
+    -mongo-search:db
   volumes:
     -log
 
