@@ -6,22 +6,22 @@ mongo-search:
 search-service:
   build:./search-service
   links:
-    -mongo-search:search
+    - mongo-search:search
   volumes:
-    -log
+    - log
 
 #Editor Service Database
 mongo-edit:
   image:mongo
   volumes:
-    -data
+    - data
 
 #Editor Microservice
 editor-service:
   build:./editor-services
   links:
-    -mongo-edit:db
-    -search-service:search
+    - mongo-edit:db
+    - search-service:search
   volumes:
     -log
 
@@ -29,16 +29,16 @@ editor-service:
 mongo-api:
   image:mongo
   volumes:
-    -data
+    - data
 
 #Authentication, Authorization and Reverse Proxy
 api-gateway:
   build:./api-gateway
   ports:
-    -8080:8080
+    - 8080:8080
   volumes:
-    -log
+    - log
   links:
-    -mongo-api:db
-    -editor-service:editor
-    -search-service:search
+    - mongo-api:db
+    - editor-service:editor
+    - search-service:search
