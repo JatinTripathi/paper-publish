@@ -14,7 +14,7 @@ mongo-edit:
 
 #Editor Microservice
 editor-service:
-  build: ./editor-services
+  build: ./editor-service
   links:
     - mongo-edit:db
     - search-service:search
