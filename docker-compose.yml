@@ -6,7 +6,7 @@ mongo-search:
 search-service:
   build:./search-service
   links:
-    -mongo-search:db
+    -mongo-search:search
   volumes:
     -log
 
