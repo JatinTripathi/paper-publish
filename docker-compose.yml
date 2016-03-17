@@ -1,30 +1,3 @@
-#Search Microservice
-mongo-search:
-  image: elasticsearch
-  
-#Search Microservice
-search-service:
-  build: ./search-service
-  links:
-    - mongo-search:search
-  command: node search-service/server.js
-
-#Editor Service Database
-mongo-edit:
-  image: mongo
-
-#Editor Microservice
-editor-service:
-  build: ./editor-service
-  links:
-    - mongo-edit:db
-    - search-service:search
-  command: node editor-service/server.js
-
-#Api-Gateway Database
-mongo-api:
-  image: mongo
-
 #Authentication, Authorization and Reverse Proxy
 api-gateway:
   build: ./api-gateway
@@ -35,3 +8,30 @@ api-gateway:
     - editor-service:editor
     - search-service:search
   command: node api-gateway/server.js
+
+#Api-Gateway Database
+mongo-api:
+  image: mongo
+
+#Editor Microservice
+editor-service:
+  build: ./editor-service
+  links:
+    - mongo-edit:db
+    - search-service:search
+  command: node editor-service/server.js
+
+#Editor Service Database
+mongo-edit:
+  image: mongo
+  
+#Search Microservice
+search-service:
+  build: ./search-service
+  links:
+    - mongo-search:search
+  command: node search-service/server.js
+
+#Search Microservice
+mongo-search:
+  image: elasticsearch
