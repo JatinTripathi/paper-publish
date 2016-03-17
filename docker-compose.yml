@@ -7,6 +7,7 @@ search-service:
   build: ./search-service
   links:
     - mongo-search:search
+  command: node search-service/server.js
 
 #Editor Service Database
 mongo-edit:
@@ -18,6 +19,7 @@ editor-service:
   links:
     - mongo-edit:db
     - search-service:search
+  command: node editor-service/server.js
 
 #Api-Gateway Database
 mongo-api:
@@ -32,3 +34,4 @@ api-gateway:
     - mongo-api:db
     - editor-service:editor
     - search-service:search
+  command: node api-gateway/server.js
