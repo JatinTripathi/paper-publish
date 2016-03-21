@@ -27,7 +27,7 @@ mongo-edit:
 search-service:
   build: ./search-service
   links:
-    -elasticSearch:search
+    - elasticSearch:search
 
 #Search Microservice
 elasticSearch:
