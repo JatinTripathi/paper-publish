@@ -11,8 +11,10 @@ The first one will be API Gateway node.js container and its exposed port will be
 * Mongodb container
 * Search Service Container
 * Editor Service Container
+
 Then, Search service container will be linked to,
 * Mongodb Container
 * Search Service Container
+
 And, Editor Service Container will be linked to,
 * Elasticsearch Container
