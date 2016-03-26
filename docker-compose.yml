@@ -11,6 +11,8 @@ api-gateway:
 #Api-Gateway Database
 mongo-api:
   image: mongo
+  volumes:
+    - /data
 
 #Editor Microservice
 editor-service:
@@ -22,6 +24,8 @@ editor-service:
 #Editor Service Database
 mongo-edit:
   image: mongo
+  volumes:
+    - /data
   
 #Search Microservice
 search-service:
