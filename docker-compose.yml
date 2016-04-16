@@ -7,14 +7,10 @@ api-gateway:
     - mongo-api:db
     - editor-service:editor
     - search-service:search
-  volumes:
-    - /log
 
 #Api-Gateway Database
 mongo-api:
   image: mongo
-  volumes:
-    - /data
 
 #Editor Microservice
 editor-service:
@@ -22,22 +18,16 @@ editor-service:
   links:
     - mongo-edit:db
     - search-service:search
-  volumes:
-    - /log
 
 #Editor Service Database
 mongo-edit:
   image: mongo
-  volumes:
-    - /data
-  
+
 #Search Microservice
 search-service:
   build: ./search-service
   links:
     - elasticSearch:search
-  volumes:
-    - /log
 
 #Search Microservice
 elasticSearch:
